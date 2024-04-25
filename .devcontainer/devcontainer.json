@@ -1,0 +1,35 @@
+{
+    "name": "42CE Developer Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": { 
+            "VARIANT": "3.8",
+            "INSTALL_NODE": "false"
+        }
+    },
+    "runArgs": [
+        "-u",
+        "vscode",
+        "-e",
+        "FLASK_APP=/workspace/server.py",
+        "-e",
+        "FLASK_ENV=development",
+        "-e",
+        "LC_ALL=C.UTF-8",
+        "-e",
+        "LANG=C.UTF-8"
+    ],
+    "settings": { 
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.format.sortImports": true,
+        "python.analysis.autoSearchPaths": true,
+        "python.analysis.useLibraryCodeForTypes": true
+    },
+    "extensions": ["ms-python.python"],
+    "forwardPorts": [5000],
+    "postCreateCommand": "pip install -r requirements.txt"
+}
